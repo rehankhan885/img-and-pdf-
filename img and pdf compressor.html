@@ -2,854 +2,1076 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="description" content="Free online toolkit to convert, compress, and edit PDFs and images. All-in-one solution for image and PDF tools.">
-  <meta name="keywords" content="PDF to JPG, Compress PDF, Image Compressor, Convert PNG to PDF, Free PDF tools, Online image tools">
-  <meta name="author" content="ImagePDFToolkit.com">
-  <meta property="og:title" content="All-in-One PDF & Image Toolkit">
-  <meta property="og:description" content="Convert, compress, and edit PDF and image files easily with our free online tools.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF & Image Toolkit - Convert, Compress & Edit Files Online</title>
+  <meta name="description" content="Free online PDF and image tools. Convert, compress, edit PDFs and images instantly. No installation needed. Works on all devices. 100% secure file processing.">
+  <meta name="keywords" content="PDF converter, image compressor, JPG to PDF, PDF to JPG, compress PDF, resize image, edit PDF, merge PDF, protect PDF, PNG to JPG, HEIC converter">
+  <meta name="author" content="ImagePDFToolkit">
+  
+  <!-- Canonical URL to avoid duplicate content -->
+  <link rel="canonical" href="https://imagepdftoolkit.com">
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="PDF & Image Toolkit - All-in-One Online File Converter">
+  <meta property="og:description" content="Free online tools to convert, compress and edit PDFs and images. No registration required.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://imagepdftoolkit.com">
-  <meta property="og:image" content="https://imagepdftoolkit.com/banner.jpg">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF & Image Toolkit - All-in-One Converter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --warning: #f72585;
-            --pdf-red: #e74c3c;
-            --pdf-dark: #c0392b;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fb;
-            color: var(--dark);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        
-        .tab-container {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .tab {
-            padding: 12px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .tab.active {
-            border-bottom-color: var(--primary);
-            color: var(--primary);
-        }
-        
-        .tab.pdf-tab.active {
-            border-bottom-color: var(--pdf-red);
-            color: var(--pdf-dark);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .upload-area {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            border: 2px dashed #ddd;
-            transition: all 0.3s;
-        }
-        
-        .upload-area:hover {
-            border-color: var(--accent);
-        }
-        
-        .pdf-upload-area:hover {
-            border-color: var(--pdf-red);
-        }
-        
-        .upload-area i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .pdf-upload-area i {
-            color: var(--pdf-red);
-        }
-        
-        .upload-text {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn-pdf {
-            background-color: var(--pdf-red);
-        }
-        
-        .btn-pdf:hover {
-            background-color: var(--pdf-dark);
-        }
-        
-        .btn i {
-            margin-right: 8px;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline-pdf {
-            border-color: var(--pdf-red);
-            color: var(--pdf-red);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .btn-outline-pdf:hover {
-            background-color: var(--pdf-red);
-            color: white;
-        }
-        
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .tool-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #eee;
-        }
-        
-        .pdf-tool-card {
-            border-left: 4px solid var(--pdf-red);
-        }
-        
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent);
-        }
-        
-        .pdf-tool-card:hover {
-            border-color: var(--pdf-red);
-        }
-        
-        .tool-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            background-color: #eef2ff;
-            width: 60px;
-            height: 60px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .pdf-tool-card i {
-            color: var(--pdf-red);
-            background-color: #fde8e6;
-        }
-        
-        .tool-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .tool-card p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .preview-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .preview-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        
-        .image-thumbnail {
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .image-thumbnail img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .pdf-thumbnail {
-            background-color: #f5f5f5;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 150px;
-        }
-        
-        .pdf-thumbnail i {
-            font-size: 3rem;
-            color: var(--pdf-red);
-            margin-bottom: 10px;
-        }
-        
-        .pdf-thumbnail span {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .image-actions {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            display: flex;
-            justify-content: space-around;
-        }
-        
-        .image-actions button {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .image-actions button:hover {
-            color: var(--accent);
-        }
-        
-        .pdf-actions button:hover {
-            color: var(--pdf-red);
-        }
-        
-        .settings-panel {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-        
-        .settings-header {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        
-        .range-slider {
-            width: 100%;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .checkbox-group input {
-            margin-right: 10px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .tools-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-            
-            .preview-images {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .tab-container {
-                flex-wrap: wrap;
-            }
-            
-            .tab {
-                flex: 1 0 50%;
-                text-align: center;
-            }
-        }
-    </style>
+  <meta property="og:image" content="https://imagepdftoolkit.com/images/social-preview.jpg">
+  <meta property="og:site_name" content="PDF & Image Toolkit">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PDF & Image Toolkit - Free Online File Converter">
+  <meta name="twitter:description" content="Convert, compress and edit PDFs and images online for free. No watermarks, no registration.">
+  <meta name="twitter:image" content="https://imagepdftoolkit.com/images/twitter-preview.jpg">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <!-- Structured Data / Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "PDF & Image Toolkit",
+    "url": "https://imagepdftoolkit.com",
+    "description": "Free online tools to convert, compress and edit PDFs and images",
+    "applicationCategory": "DocumentAndImageEditor",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --secondary: #3f37c9;
+      --accent: #4895ef;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --success: #4cc9f0;
+      --warning: #f72585;
+      --pdf-red: #e74c3c;
+      --pdf-dark: #c0392b;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f7fb;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 20px 0;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .tab-container {
+      display: flex;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .tab {
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .tab.active {
+      border-bottom-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .tab.pdf-tab.active {
+      border-bottom-color: var(--pdf-red);
+      color: var(--pdf-dark);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .upload-area {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      border: 2px dashed #ddd;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .upload-area:hover {
+      border-color: var(--accent);
+    }
+    
+    .pdf-upload-area:hover {
+      border-color: var(--pdf-red);
+    }
+    
+    .upload-area i {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+    
+    .pdf-upload-area i {
+      color: var(--pdf-red);
+    }
+    
+    .upload-text {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .btn-pdf {
+      background-color: var(--pdf-red);
+    }
+    
+    .btn-pdf:hover {
+      background-color: var(--pdf-dark);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+    }
+    
+    .btn:hover {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline-pdf {
+      border-color: var(--pdf-red);
+      color: var(--pdf-red);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-outline-pdf:hover {
+      background-color: var(--pdf-red);
+      color: white;
+    }
+    
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .tool-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #eee;
+    }
+    
+    .pdf-tool-card {
+      border-left: 4px solid var(--pdf-red);
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      border-color: var(--accent);
+    }
+    
+    .pdf-tool-card:hover {
+      border-color: var(--pdf-red);
+    }
+    
+    .tool-card i {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      background-color: #eef2ff;
+      width: 60px;
+      height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+    
+    .pdf-tool-card i {
+      color: var(--pdf-red);
+      background-color: #fde8e6;
+    }
+    
+    .tool-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    
+    .tool-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .preview-section {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+    
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .preview-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .image-thumbnail {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .image-thumbnail img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .pdf-thumbnail {
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 150px;
+    }
+    
+    .pdf-thumbnail i {
+      font-size: 3rem;
+      color: var(--pdf-red);
+      margin-bottom: 10px;
+    }
+    
+    .pdf-thumbnail span {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .image-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .image-actions button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .image-actions button:hover {
+      color: var(--accent);
+    }
+    
+    .pdf-actions button:hover {
+      color: var(--pdf-red);
+    }
+    
+    .settings-panel {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    .settings-header {
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    
+    .range-slider {
+      width: 100%;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .checkbox-group input {
+      margin-right: 10px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    /* Ad spaces */
+    .ad-container {
+      display: flex;
+      justify-content: center;
+    }
+    
+    .ad-space {
+      width: 120px;
+      padding: 10px;
+    }
+    
+    .ad-vertical {
+      width: 120px;
+      height: 600px;
+      background: #f1f1f1;
+      text-align: center;
+      line-height: 600px;
+      overflow: hidden;
+    }
+    
+    .main-content {
+      flex: 1;
+      max-width: 1000px;
+    }
+    
+    /* AdSense responsive ads */
+    .ad-unit {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+      border: 1px solid #eee;
+      font-size: 12px;
+      color: #666;
+    }
+    
+    .ad-horizontal {
+      width: 728px;
+      height: 90px;
+      margin: 20px auto;
+      display: none;
+    }
+    
+    @media (max-width: 992px) {
+      .ad-space {
+        display: none;
+      }
+      
+      .main-content {
+        max-width: 100%;
+      }
+      
+      .ad-horizontal {
+        display: flex;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .tools-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .preview-images {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
+      
+      .tab-container {
+        flex-wrap: wrap;
+      }
+      
+      .tab {
+        flex: 1 0 50%;
+        text-align: center;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      
+      .ad-horizontal {
+        width: 320px;
+        height: 50px;
+      }
+    }
+    
+    /* Breadcrumb for SEO */
+    .breadcrumb {
+      padding: 10px 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .breadcrumb span {
+      margin: 0 5px;
+      color: #999;
+    }
+  </style>
 </head>
 
 <body>
-  <div style="display: flex; justify-content: center;">
-    <div style="flex: 0 0 120px; padding: 10px;">
-      <!-- Left Ad -->
-      <div style="width: 120px; height: 600px; background: #f1f1f1; text-align: center; line-height: 600px;">Ad Space</div>
+  <!-- Google AdSense Header (if you have AdSense account) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+  
+  <div class="ad-container">
+    <div class="ad-space">
+      <div class="ad-vertical">
+        <!-- Left Ad Unit -->
+        <div class="ad-unit">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="XXXXXXXXXX"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
     </div>
-    <div style="flex: 1; max-width: 1000px;">
-
-    <div class="container">
+    
+    <div class="main-content">
+      <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <a href="/tools">Online Tools</a>
+          <span>/</span>
+          <span>PDF & Image Toolkit</span>
+        </div>
+        
         <header>
-            <h1>PDF & Image Toolkit</h1>
-            <p class="subtitle">Convert, compress, and edit files in one place</p>
+          <h1>PDF & Image Toolkit</h1>
+          <p class="subtitle">Convert, compress, and edit files in one place</p>
         </header>
         
+        <!-- Horizontal Ad Unit (shown on mobile) -->
+        <div class="ad-horizontal">
+          <div class="ad-unit">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
+        </div>
+        
         <div class="tab-container">
-            <div class="tab active" data-tab="image-tools">Image Tools</div>
-            <div class="tab pdf-tab" data-tab="pdf-tools">PDF Tools</div>
+          <div class="tab active" data-tab="image-tools">Image Tools</div>
+          <div class="tab pdf-tab" data-tab="pdf-tools">PDF Tools</div>
         </div>
         
         <!-- Image Tools Tab -->
         <div class="tab-content active" id="image-tools">
-            <div class="upload-area">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <p class="upload-text">Drag & drop your images here or click to browse</p>
-                <button class="btn"><i class="fas fa-folder-open"></i> Select Images</button>
-                <button class="btn btn-outline"><i class="fas fa-bulk"></i> Bulk Upload</button>
+          <div class="upload-area">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p class="upload-text">Drag & drop your images here or click to browse</p>
+            <button class="btn"><i class="fas fa-folder-open"></i> Select Images</button>
+            <button class="btn btn-outline"><i class="fas fa-bulk"></i> Bulk Upload</button>
+          </div>
+          
+          <div class="tools-grid">
+            <div class="tool-card">
+              <i class="fas fa-compress-alt"></i>
+              <h3>Image Compressor</h3>
+              <p>Reduce file size without losing quality</p>
             </div>
             
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <i class="fas fa-compress-alt"></i>
-                    <h3>Image Compressor</h3>
-                    <p>Reduce file size without losing quality</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-expand-alt"></i>
-                    <h3>Bulk Image Resizer</h3>
-                    <p>Resize multiple images at once</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-crop"></i>
-                    <h3>Crop Image</h3>
-                    <p>Custom cropping for perfect framing</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-th"></i>
-                    <h3>Collage Maker</h3>
-                    <p>Combine multiple images into one</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-undo"></i>
-                    <h3>Flip Image</h3>
-                    <p>Horizontal or vertical flipping</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-sync-alt"></i>
-                    <h3>Rotate Image</h3>
-                    <p>Rotate images by any angle</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-search-plus"></i>
-                    <h3>Image Enlarger</h3>
-                    <p>Upscale images without quality loss</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-eye-dropper"></i>
-                    <h3>Color Picker</h3>
-                    <p>Extract colors from your images</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-grin-tongue-wink"></i>
-                    <h3>Meme Generator</h3>
-                    <p>Create funny memes in seconds</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-exchange-alt"></i>
-                    <h3>Image Converter</h3>
-                    <p>Convert between different formats</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-file-pdf"></i>
-                    <h3>PDF to JPG</h3>
-                    <p>Convert PDF pages to images</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>HEIC to JPG</h3>
-                    <p>Convert iPhone photos to JPG</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-vector-square"></i>
-                    <h3>SVG Converter</h3>
-                    <p>Convert SVG to other formats</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>PDF to PNG</h3>
-                    <p>Convert PDF to transparent PNGs</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>PNG to SVG</h3>
-                    <p>Convert PNG to vector SVG</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-globe"></i>
-                    <h3>WebP to JPG</h3>
-                    <p>Convert WebP to standard JPG</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>PNG to JPG</h3>
-                    <p>Convert PNG to JPG format</p>
-                </div>
-                
-                <div class="tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>JPG to PNG</h3>
-                    <p>Convert JPG to PNG format</p>
-                </div>
+            <div class="tool-card">
+              <i class="fas fa-expand-alt"></i>
+              <h3>Bulk Image Resizer</h3>
+              <p>Resize multiple images at once</p>
             </div>
             
-            <div class="preview-section">
-                <div class="preview-header">
-                    <h2>Selected Images</h2>
-                    <button class="btn btn-outline"><i class="fas fa-trash-alt"></i> Clear All</button>
-                </div>
-                
-                <div class="preview-images">
-                    <div class="image-thumbnail">
-                        <img src="https://via.placeholder.com/300" alt="Preview">
-                        <div class="image-actions">
-                            <button><i class="fas fa-trash"></i></button>
-                            <button><i class="fas fa-edit"></i></button>
-                            <button><i class="fas fa-download"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="image-thumbnail">
-                        <img src="https://via.placeholder.com/300" alt="Preview">
-                        <div class="image-actions">
-                            <button><i class="fas fa-trash"></i></button>
-                            <button><i class="fas fa-edit"></i></button>
-                            <button><i class="fas fa-download"></i></button>
-                        </div>
-                    </div>
-                </div>
+            <div class="tool-card">
+              <i class="fas fa-crop"></i>
+              <h3>Crop Image</h3>
+              <p>Custom cropping for perfect framing</p>
             </div>
             
-            <div class="settings-panel">
-                <h3 class="settings-header">Image Processing Settings</h3>
-                
-                <div class="form-group">
-                    <label for="quality">Quality</label>
-                    <input type="range" id="quality" class="range-slider" min="1" max="100" value="80">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Small file</span>
-                        <span>High quality</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="format">Output Format</label>
-                    <select id="format" class="form-control">
-                        <option value="jpg">JPG</option>
-                        <option value="png">PNG</option>
-                        <option value="webp">WebP</option>
-                        <option value="svg">SVG</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="resize">Resize Options</label>
-                    <select id="resize" class="form-control">
-                        <option value="original">Keep original size</option>
-                        <option value="custom">Custom size</option>
-                        <option value="hd">HD (1280×720)</option>
-                        <option value="fullhd">Full HD (1920×1080)</option>
-                        <option value="4k">4K (3840×2160)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Additional Options</label>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="keep-metadata">
-                        <label for="keep-metadata">Keep metadata</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="optimize" checked>
-                        <label for="optimize">Optimize for web</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="progressive">
-                        <label for="progressive">Progressive loading</label>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
-                    <button class="btn"><i class="fas fa-magic"></i> Process Images</button>
-                </div>
+            <div class="tool-card">
+              <i class="fas fa-th"></i>
+              <h3>Collage Maker</h3>
+              <p>Combine multiple images into one</p>
             </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-undo"></i>
+              <h3>Flip Image</h3>
+              <p>Horizontal or vertical flipping</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-sync-alt"></i>
+              <h3>Rotate Image</h3>
+              <p>Rotate images by any angle</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-search-plus"></i>
+              <h3>Image Enlarger</h3>
+              <p>Upscale images without quality loss</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-eye-dropper"></i>
+              <h3>Color Picker</h3>
+              <p>Extract colors from your images</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-grin-tongue-wink"></i>
+              <h3>Meme Generator</h3>
+              <p>Create funny memes in seconds</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-exchange-alt"></i>
+              <h3>Image Converter</h3>
+              <p>Convert between different formats</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-file-pdf"></i>
+              <h3>PDF to JPG</h3>
+              <p>Convert PDF pages to images</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-mobile-alt"></i>
+              <h3>HEIC to JPG</h3>
+              <p>Convert iPhone photos to JPG</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-vector-square"></i>
+              <h3>SVG Converter</h3>
+              <p>Convert SVG to other formats</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>PDF to PNG</h3>
+              <p>Convert PDF to transparent PNGs</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-project-diagram"></i>
+              <h3>PNG to SVG</h3>
+              <p>Convert PNG to vector SVG</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-globe"></i>
+              <h3>WebP to JPG</h3>
+              <p>Convert WebP to standard JPG</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>PNG to JPG</h3>
+              <p>Convert PNG to JPG format</p>
+            </div>
+            
+            <div class="tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>JPG to PNG</h3>
+              <p>Convert JPG to PNG format</p>
+            </div>
+          </div>
+          
+          <div class="preview-section">
+            <div class="preview-header">
+              <h2>Selected Images</h2>
+              <button class="btn btn-outline"><i class="fas fa-trash-alt"></i> Clear All</button>
+            </div>
+            
+            <div class="preview-images">
+              <div class="image-thumbnail">
+                <img src="https://via.placeholder.com/300" alt="Image preview example" loading="lazy">
+                <div class="image-actions">
+                  <button aria-label="Delete image"><i class="fas fa-trash"></i></button>
+                  <button aria-label="Edit image"><i class="fas fa-edit"></i></button>
+                  <button aria-label="Download image"><i class="fas fa-download"></i></button>
+                </div>
+              </div>
+              
+              <div class="image-thumbnail">
+                <img src="https://via.placeholder.com/300" alt="Image preview example" loading="lazy">
+                <div class="image-actions">
+                  <button aria-label="Delete image"><i class="fas fa-trash"></i></button>
+                  <button aria-label="Edit image"><i class="fas fa-edit"></i></button>
+                  <button aria-label="Download image"><i class="fas fa-download"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="settings-panel">
+            <h3 class="settings-header">Image Processing Settings</h3>
+            
+            <div class="form-group">
+              <label for="quality">Quality</label>
+              <input type="range" id="quality" class="range-slider" min="1" max="100" value="80">
+              <div style="display: flex; justify-content: space-between;">
+                <span>Small file</span>
+                <span>High quality</span>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="format">Output Format</label>
+              <select id="format" class="form-control">
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+                <option value="svg">SVG</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="resize">Resize Options</label>
+              <select id="resize" class="form-control">
+                <option value="original">Keep original size</option>
+                <option value="custom">Custom size</option>
+                <option value="hd">HD (1280×720)</option>
+                <option value="fullhd">Full HD (1920×1080)</option>
+                <option value="4k">4K (3840×2160)</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>Additional Options</label>
+              <div class="checkbox-group">
+                <input type="checkbox" id="keep-metadata">
+                <label for="keep-metadata">Keep metadata</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="optimize" checked>
+                <label for="optimize">Optimize for web</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="progressive">
+                <label for="progressive">Progressive loading</label>
+              </div>
+            </div>
+            
+            <div class="action-buttons">
+              <button class="btn btn-outline"><i class="fas fa-times"></i> Cancel</button>
+              <button class="btn"><i class="fas fa-magic"></i> Process Images</button>
+            </div>
+          </div>
         </div>
         
         <!-- PDF Tools Tab -->
         <div class="tab-content" id="pdf-tools">
-            <div class="upload-area pdf-upload-area">
+          <div class="upload-area pdf-upload-area">
+            <i class="fas fa-file-pdf"></i>
+            <p class="upload-text">Drag & drop your PDFs here or click to browse</p>
+            <button class="btn btn-pdf"><i class="fas fa-folder-open"></i> Select PDFs</button>
+            <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-bulk"></i> Bulk Upload</button>
+          </div>
+          
+          <div class="tools-grid">
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-compress-alt"></i>
+              <h3>Compress PDF</h3>
+              <p>Reduce PDF file size while preserving quality</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-exchange-alt"></i>
+              <h3>PDF Converter</h3>
+              <p>Convert PDFs to various formats</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-image"></i>
+              <h3>Image to PDF</h3>
+              <p>Convert images to PDF documents</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>JPG to PDF</h3>
+              <p>Convert JPG images to PDF</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>PNG to PDF</h3>
+              <p>Convert PNG images to PDF</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-file-pdf"></i>
+              <h3>PDF to GIF</h3>
+              <p>Convert PDF pages to animated GIF</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-file-pdf"></i>
+              <h3>PDF to JPG</h3>
+              <p>Convert PDF pages to JPG images</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-file-image"></i>
+              <h3>PDF to PNG</h3>
+              <p>Convert PDF to transparent PNGs</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-lock"></i>
+              <h3>Protect PDF</h3>
+              <p>Add password protection to PDFs</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-unlock"></i>
+              <h3>Unlock PDF</h3>
+              <p>Remove password from PDFs</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-edit"></i>
+              <h3>Edit PDF</h3>
+              <p>Modify text and images in PDFs</p>
+            </div>
+            
+            <div class="tool-card pdf-tool-card">
+              <i class="fas fa-merge"></i>
+              <h3>Merge PDF</h3>
+              <p>Combine multiple PDFs into one</p>
+            </div>
+          </div>
+          
+          <div class="preview-section">
+            <div class="preview-header">
+              <h2>Selected PDFs</h2>
+              <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-trash-alt"></i> Clear All</button>
+            </div>
+            
+            <div class="preview-images">
+              <div class="image-thumbnail pdf-thumbnail">
                 <i class="fas fa-file-pdf"></i>
-                <p class="upload-text">Drag & drop your PDFs here or click to browse</p>
-                <button class="btn btn-pdf"><i class="fas fa-folder-open"></i> Select PDFs</button>
-                <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-bulk"></i> Bulk Upload</button>
+                <span>document.pdf</span>
+                <div class="image-actions pdf-actions">
+                  <button aria-label="Delete PDF"><i class="fas fa-trash"></i></button>
+                  <button aria-label="Edit PDF"><i class="fas fa-edit"></i></button>
+                  <button aria-label="Download PDF"><i class="fas fa-download"></i></button>
+                </div>
+              </div>
+              
+              <div class="image-thumbnail pdf-thumbnail">
+                <i class="fas fa-file-pdf"></i>
+                <span>report.pdf</span>
+                <div class="image-actions pdf-actions">
+                  <button aria-label="Delete PDF"><i class="fas fa-trash"></i></button>
+                  <button aria-label="Edit PDF"><i class="fas fa-edit"></i></button>
+                  <button aria-label="Download PDF"><i class="fas fa-download"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="settings-panel">
+            <h3 class="settings-header">PDF Processing Settings</h3>
+            
+            <div class="form-group">
+              <label for="compression-level">Compression Level</label>
+              <select id="compression-level" class="form-control">
+                <option value="low">Low (better quality)</option>
+                <option value="medium" selected>Medium (balanced)</option>
+                <option value="high">High (smaller file)</option>
+                <option value="extreme">Extreme (max compression)</option>
+              </select>
             </div>
             
-            <div class="tools-grid">
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-compress-alt"></i>
-                    <h3>Compress PDF</h3>
-                    <p>Reduce PDF file size while preserving quality</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-exchange-alt"></i>
-                    <h3>PDF Converter</h3>
-                    <p>Convert PDFs to various formats</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-image"></i>
-                    <h3>Image to PDF</h3>
-                    <p>Convert images to PDF documents</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>JPG to PDF</h3>
-                    <p>Convert JPG images to PDF</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>PNG to PDF</h3>
-                    <p>Convert PNG images to PDF</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-file-pdf"></i>
-                    <h3>PDF to GIF</h3>
-                    <p>Convert PDF pages to animated GIF</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-file-pdf"></i>
-                    <h3>PDF to JPG</h3>
-                    <p>Convert PDF pages to JPG images</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-file-image"></i>
-                    <h3>PDF to PNG</h3>
-                    <p>Convert PDF to transparent PNGs</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Protect PDF</h3>
-                    <p>Add password protection to PDFs</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-unlock"></i>
-                    <h3>Unlock PDF</h3>
-                    <p>Remove password from PDFs</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-edit"></i>
-                    <h3>Edit PDF</h3>
-                    <p>Modify text and images in PDFs</p>
-                </div>
-                
-                <div class="tool-card pdf-tool-card">
-                    <i class="fas fa-merge"></i>
-                    <h3>Merge PDF</h3>
-                    <p>Combine multiple PDFs into one</p>
-                </div>
+            <div class="form-group">
+              <label for="pdf-format">Output Format</label>
+              <select id="pdf-format" class="form-control">
+                <option value="pdf">PDF (keep format)</option>
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="gif">GIF</option>
+                <option value="docx">Word (DOCX)</option>
+                <option value="txt">Text (TXT)</option>
+              </select>
             </div>
             
-            <div class="preview-section">
-                <div class="preview-header">
-                    <h2>Selected PDFs</h2>
-                    <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-trash-alt"></i> Clear All</button>
-                </div>
-                
-                <div class="preview-images">
-                    <div class="image-thumbnail pdf-thumbnail">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>document.pdf</span>
-                        <div class="image-actions pdf-actions">
-                            <button><i class="fas fa-trash"></i></button>
-                            <button><i class="fas fa-edit"></i></button>
-                            <button><i class="fas fa-download"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div class="image-thumbnail pdf-thumbnail">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>report.pdf</span>
-                        <div class="image-actions pdf-actions">
-                            <button><i class="fas fa-trash"></i></button>
-                            <button><i class="fas fa-edit"></i></button>
-                            <button><i class="fas fa-download"></i></button>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label for="pdf-quality">Quality (for image formats)</label>
+              <input type="range" id="pdf-quality" class="range-slider" min="1" max="100" value="90">
+              <div style="display: flex; justify-content: space-between;">
+                <span>Small file</span>
+                <span>High quality</span>
+              </div>
             </div>
             
-            <div class="settings-panel">
-                <h3 class="settings-header">PDF Processing Settings</h3>
-                
-                <div class="form-group">
-                    <label for="compression-level">Compression Level</label>
-                    <select id="compression-level" class="form-control">
-                        <option value="low">Low (better quality)</option>
-                        <option value="medium" selected>Medium (balanced)</option>
-                        <option value="high">High (smaller file)</option>
-                        <option value="extreme">Extreme (max compression)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pdf-format">Output Format</label>
-                    <select id="pdf-format" class="form-control">
-                        <option value="pdf">PDF (keep format)</option>
-                        <option value="jpg">JPG</option>
-                        <option value="png">PNG</option>
-                        <option value="gif">GIF</option>
-                        <option value="docx">Word (DOCX)</option>
-                        <option value="txt">Text (TXT)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="pdf-quality">Quality (for image formats)</label>
-                    <input type="range" id="pdf-quality" class="range-slider" min="1" max="100" value="90">
-                    <div style="display: flex; justify-content: space-between;">
-                        <span>Small file</span>
-                        <span>High quality</span>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Additional Options</label>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="ocr" checked>
-                        <label for="ocr">Enable OCR (text recognition)</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="preserve-layout">
-                        <label for="preserve-layout">Preserve original layout</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="remove-metadata">
-                        <label for="remove-metadata">Remove metadata</label>
-                    </div>
-                </div>
-                
-                <div class="action-buttons">
-                    <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-times"></i> Cancel</button>
-                    <button class="btn btn-pdf"><i class="fas fa-cog"></i> Process PDFs</button>
-                </div>
+            <div class="form-group">
+              <label>Additional Options</label>
+              <div class="checkbox-group">
+                <input type="checkbox" id="ocr" checked>
+                <label for="ocr">Enable OCR (text recognition)</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="preserve-layout">
+                <label for="preserve-layout">Preserve original layout</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="remove-metadata">
+                <label for="remove-metadata">Remove metadata</label>
+              </div>
             </div>
+            
+            <div class="action-buttons">
+              <button class="btn btn-outline btn-outline-pdf"><i class="fas fa-times"></i> Cancel</button>
+              <button class="btn btn-pdf"><i class="fas fa-cog"></i> Process PDFs</button>
+            </div>
+          </div>
         </div>
         
         <footer>
-            <p>© 2023 PDF & Image Toolkit | All-in-one file processing solution</p>
+          <p>© 2023 PDF & Image Toolkit | All-in-one file processing solution</p>
+          <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a> | <a href="/contact">Contact Us</a></p>
         </footer>
+      </div>
     </div>
     
-    <script>
-        // Tab switching functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs and contents
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                this.classList.add('active');
-                const tabId = this.getAttribute('data-tab');
-                document.getElementById(tabId).classList.add('active');
-            });
-        });
-        
-        // Tool card functionality
-        document.querySelectorAll('.tool-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const toolName = this.querySelector('h3').textContent;
-                alert(`You selected: ${toolName}\n\nThis would open the ${toolName} tool in a real application.`);
-            });
-        });
-        
-        // Upload area functionality
-        document.querySelectorAll('.upload-area').forEach(area => {
-            area.addEventListener('click', function() {
-                const type = this.classList.contains('pdf-upload-area') ? 'PDF' : 'image';
-                alert(`${type} upload dialog would open here in a real application.`);
-            });
-        });
-        
-        // Clear buttons functionality
-        document.querySelectorAll('.btn-outline').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const type = this.classList.contains('btn-outline-pdf') ? 'PDFs' : 'images';
-                alert(`All selected ${type} would be cleared.`);
-            });
-        });
-    </script>
-
-    </div>
-    <div style="flex: 0 0 120px; padding: 10px;">
-      <!-- Right Ad -->
-      <div style="width: 120px; height: 600px; background: #f1f1f1; text-align: center; line-height: 600px;">Ad Space</div>
+    <div class="ad-space">
+      <div class="ad-vertical">
+        <!-- Right Ad Unit -->
+        <div class="ad-unit">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+               data-ad-slot="XXXXXXXXXX"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+      </div>
     </div>
   </div>
+  
+  <script>
+    // Tab switching functionality
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove active class from all tabs and contents
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        this.classList.add('active');
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Tool card functionality
+    document.querySelectorAll('.tool-card').forEach(card => {
+      card.addEventListener('click', function() {
+        const toolName = this.querySelector('h3').textContent;
+        alert(`You selected: ${toolName}\n\nThis would open the ${toolName} tool in a real application.`);
+      });
+    });
+    
+    // Upload area functionality
+    document.querySelectorAll('.upload-area').forEach(area => {
+      area.addEventListener('click', function() {
+        const type = this.classList.contains('pdf-upload-area') ? 'PDF' : 'image';
+        alert(`${type} upload dialog would open here in a real application.`);
+      });
+      
+      // Handle drag and drop (placeholder)
+      area.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        this.style.borderColor = this.classList.contains('pdf-upload-area') ? 'var(--pdf-red)' : 'var(--accent)';
+      });
+      
+      area.addEventListener('dragleave', () => {
+        this.style.borderColor = '#ddd';
+      });
+      
+      area.addEventListener('drop', (e) => {
+        e.preventDefault();
+        this.style.borderColor = '#ddd';
+        const type = this.classList.contains('pdf-upload-area') ? 'PDF' : 'image';
+        alert(`Dropped ${type} files would be processed here.`);
+      });
+    });
+    
+    // Clear buttons functionality
+    document.querySelectorAll('.btn-outline').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const type = this.classList.contains('btn-outline-pdf') ? 'PDFs' : 'images';
+        alert(`All selected ${type} would be cleared.`);
+      });
+    });
+    
+    // Process buttons functionality
+    document.querySelectorAll('.btn:not(.btn-outline)').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (!this.classList.contains('btn-pdf')) {
+          e.preventDefault();
+          alert('Image processing would start here with the selected settings.');
+        }
+      });
+    });
+    
+    document.querySelector('.btn-pdf').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('PDF processing would start here with the selected settings.');
+    });
+  </script>
+  
+  <!-- Google Analytics (if you have it) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </body>
-
 </html>
